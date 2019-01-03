@@ -5,9 +5,9 @@ Array.prototype.myEach = function(callback) {
 };
 
 Array.prototype.myMap = function(callback) {
-    
     const mappedArray = [];
-    this.myEach(function(el){
+
+    this.myEach(function(el) {
         mappedArray.push(callback(el));
     });
 
@@ -23,11 +23,9 @@ Array.prototype.myReduce = function(cb, initialValue) {
         i++;
     }
 
-    while (i < this.length) {
-        accumulator = cb(accumulator, this[i]);
-
-        i++;
-    }
+    this.slice(i, this.length).myEach(function(el) {
+        accumulator = cb(accumulator, el);
+    });
 
     return accumulator;
 };
